@@ -9,7 +9,10 @@ class WiserWine::CLI
   end
 
   def list_regions
-    WiserWine::Region.all #should return all regions
+    region_list = WiserWine::Region.all
+    region_list.each.with_index(1) do |region , index|
+      puts "#{index}. #{region.name}"
+    end
   end
 
   def menu
