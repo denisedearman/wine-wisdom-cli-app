@@ -9,8 +9,8 @@ class WiserWine::CLI
   end
 
   def list_regions
-    region_list = WiserWine::Region.all
-    region_list.each.with_index(1) do |region , index|
+    @region_list = WiserWine::Region.all
+    @region_list.each.with_index(1) do |region , index|
       puts "#{index}. #{region.name}"
     end
   end
@@ -22,16 +22,12 @@ class WiserWine::CLI
       puts "Enter the number for a wine region from the list provided to get more info or exit to quit."
       list_regions
       input = gets.strip.downcase
-      case input
-        when "1"
-          puts "More info on USA"
-        when "2"
-          puts "More info on France"
-        when "3"
-          puts "More info on Germany"
-        when "exit"
+      if input.to_i != 0
+        region = @region_list[input.to_i-1]
+        puts "#{region.description}"
+      elsif input == "exit"
           puts "Goodbye friend!"
-        else
+      else
           puts "I didn't understand what you wanted."
       end
     end
