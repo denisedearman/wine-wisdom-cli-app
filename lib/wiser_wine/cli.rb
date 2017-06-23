@@ -9,14 +9,11 @@ class WiserWine::CLI
   end
 
   def list_regions
-    puts "
-    1. USA
-    2. France
-    3. Germany"
+    WiserWine::Region.all #should return all regions
   end
 
   def menu
-    welcome  
+    welcome
     input = nil
     while input != "exit"
       puts "Enter the number for a wine region from the list provided to get more info or exit to quit."
