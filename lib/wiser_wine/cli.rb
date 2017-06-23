@@ -22,7 +22,7 @@ class WiserWine::CLI
       puts "Enter the number for a wine region from the list provided to get more info or exit to quit."
       list_regions
       input = gets.strip.downcase
-      if input.to_i != 0
+      if input.to_i != 0 && input.to_i < @region_list.length
         region = @region_list[input.to_i-1]
         puts "#{region.description}"
       elsif input == "exit"
