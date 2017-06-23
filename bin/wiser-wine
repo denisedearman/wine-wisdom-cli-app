@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 
+require './lib/wiser_wine'
 WiserWine::CLI.new.call

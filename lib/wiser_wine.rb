@@ -1,5 +1,2 @@
-require "wiser_wine/version"
-
-module WiserWine
-  # Your code goes here...
-end
+require_relative "./wiser_wine/version"
+require_relative "./wiser_wine/cli"
