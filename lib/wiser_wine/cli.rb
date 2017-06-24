@@ -9,9 +9,9 @@ class WiserWine::CLI
   end
 
   def list_regions
-    @region_list = WiserWine::Region.all
-    @region_list.each.with_index(1) do |region , index|
-      puts "#{index}. #{region.name}"
+    @grape_varieties = WiserWine::GrapeVariety.all
+    @grape_varieties.each.with_index(1) do |grape , index|
+      puts "#{index}. #{grape.name}"
     end
   end
 
@@ -19,12 +19,12 @@ class WiserWine::CLI
     welcome
     input = nil
     while input != "exit"
-      puts "Enter the number for a wine region from the list provided to get more info or exit to quit."
+      puts "Enter the number for a wine grape variety from the list provided to get more info or exit to quit."
       list_regions
       input = gets.strip.downcase
-      if input.to_i != 0 && input.to_i < @region_list.length
-        region = @region_list[input.to_i-1]
-        puts "#{region.description}"
+      if input.to_i != 0 && input.to_i < @grape_varieties.length
+        grape = @grape_varieties[input.to_i-1]
+        puts "#{grape.descriptors}"
       elsif input == "exit"
           puts "Goodbye friend!"
       else
