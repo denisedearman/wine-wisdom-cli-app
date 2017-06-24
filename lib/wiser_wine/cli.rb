@@ -19,10 +19,10 @@ class WiserWine::CLI
     welcome
     input = nil
     while input != "exit"
-      puts "Enter the number for a wine grape variety from the list provided to get more info or exit to quit."
+      puts "Enter the number for a wine grape variety to get more info or type exit to quit."
       list_regions
       input = gets.strip.downcase
-      if input.to_i != 0 && input.to_i < @grape_varieties.length
+      if input.to_i != 0 && input.to_i <= @grape_varieties.length
         grape = @grape_varieties[input.to_i-1]
         puts "#{grape.descriptors}"
       elsif input == "exit"
