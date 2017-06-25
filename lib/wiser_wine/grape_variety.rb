@@ -6,6 +6,14 @@ class WiserWine::GrapeVariety
     @descriptors = []
   end
 
+  def print_details
+    puts "#{self.name}\n"
+    if self.color
+      puts "Color: #{self.color}"
+    end
+    puts "Common descriptors for #{self.name} include: #{self.descriptors.join(", ")}"
+  end
+
   def self.all
     scrape_grapes
   end
@@ -39,7 +47,7 @@ class WiserWine::GrapeVariety
     table = doc.css("table.infobox")
     rows = table.css("tr")
     rows.each do |row|
-      if row.css("th").text.downcase.include? "color"
+      if row.css("th").text.downcase.include?("color") || row.css("th").text.downcase.include?("colour")
         grape.color = row.css("td").text
       end
     end
