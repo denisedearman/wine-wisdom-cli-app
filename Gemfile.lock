@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wiser_wine (0.1.0)
+    wiser-wine (0.1.0)
       nokogiri
 
 GEM
@@ -41,7 +41,7 @@ DEPENDENCIES
   pry
   rake (~> 10.0)
   rspec (~> 3.0)
-  wiser_wine!
+  wiser-wine!
 
 BUNDLED WITH
    1.15.1
