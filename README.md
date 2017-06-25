@@ -5,18 +5,6 @@ Wiser Wine provides a CLI for the user to select a grape variety and view its co
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'wiser_wine'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install wiser-wine
 
 ## Usage
