@@ -5,9 +5,14 @@ class WiserWine::CLI
   end
 
   def welcome
-    puts "Welcome to Wiser Wine"
+    puts "Welcome to Wiser Wine!"
   end
 
+  def goodbye
+    puts "Goodbye friend!"
+  end
+
+  
   def list_regions
     @grape_varieties = WiserWine::GrapeVariety.all
     @grape_varieties.each.with_index(1) do |grape , index|
@@ -24,9 +29,15 @@ class WiserWine::CLI
       input = gets.strip.downcase
       if input.to_i != 0 && input.to_i <= @grape_varieties.length
         grape = @grape_varieties[input.to_i-1]
-        puts "Common descriptors for #{grape.name} include: #{grape.descriptors.join(", ")}"
+        puts "Common descriptors for #{grape.name} include: #{grape.descriptors.join(", ")}\n\n"
+        puts "Would you like information about a different wine? Enter 'yes' or 'no'"
+        again = gets.strip.downcase
+        if again == "no"
+          input = "exit"
+          goodbye
+        end
       elsif input == "exit"
-          puts "Goodbye friend!"
+        goodbye
       else
           puts "I didn't understand what you wanted."
       end
