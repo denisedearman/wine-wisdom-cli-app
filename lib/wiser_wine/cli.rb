@@ -24,7 +24,7 @@ class WiserWine::CLI
       input = gets.strip.downcase
       if input.to_i != 0 && input.to_i <= @grape_varieties.length
         grape = @grape_varieties[input.to_i-1]
-        puts "#{grape.descriptors}"
+        puts "Common descriptors for #{grape.name} include: #{grape.descriptors.join(", ")}"
       elsif input == "exit"
           puts "Goodbye friend!"
       else
