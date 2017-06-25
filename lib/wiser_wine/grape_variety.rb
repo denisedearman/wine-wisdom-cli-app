@@ -1,17 +1,21 @@
 class WiserWine::GrapeVariety
   require 'open-uri'
   require 'openssl'
-  attr_accessor :name, :descriptors, :color, :url
+  attr_accessor :name, :descriptors, :color, :url, :regions
   def initialize
     @descriptors = []
+    @regions = []
   end
 
   def print_details
-    puts "#{self.name}\n"
+    puts "#{self.name}\n\n"
     if self.color
-      puts "Color: #{self.color}"
+      puts "Color: #{self.color}\n\n"
     end
-    puts "Common descriptors for #{self.name} include: #{self.descriptors.join(", ")}"
+    puts "Common descriptors for #{self.name} include: #{self.descriptors.join(", ")}\n\n"
+    if self.regions.length > 0
+      puts "Notable regions include: #{self.regions.join(", ")}\n\n"
+    end
   end
 
   def self.all
@@ -49,6 +53,9 @@ class WiserWine::GrapeVariety
     rows.each do |row|
       if row.css("th").text.downcase.include?("color") || row.css("th").text.downcase.include?("colour")
         grape.color = row.css("td").text
+      end
+      if row.css("th").text.downcase.include?("region")
+          grape.regions = row.css("td").text.split(", ")
       end
     end
 
