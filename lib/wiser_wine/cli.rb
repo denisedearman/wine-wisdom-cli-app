@@ -1,4 +1,7 @@
 class WiserWine::CLI
+  def initialize
+    @grape_varieties = []
+  end
 
   def call
     menu
@@ -14,10 +17,13 @@ class WiserWine::CLI
 
 
   def list_grapes
-    @grape_varieties = WiserWine::GrapeVariety.all
+    if @grape_varieties.length == 0
+      @grape_varieties = WiserWine::GrapeVariety.all
+    end
     @grape_varieties.each.with_index(1) do |grape , index|
         puts "#{index}. #{grape.name}"
     end
+
   end
 
   def menu
