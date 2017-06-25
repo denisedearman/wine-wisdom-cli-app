@@ -25,11 +25,28 @@ class WiserWine::GrapeVariety
           grape = self.new
           grape.name = name
           grape.descriptors = descriptors.split(", ")
-          grape.url =  row.css("td:first a").attribute("href").text
+          grape.url =  "https://en.wikipedia.org" << row.css("td:first a").attribute("href").text
+          scrape_grape_details(grape)
           scraped_grapes << grape
         end
       end
     end
     scraped_grapes
   end
+
+  def self.scrape_grape_details(grape)
+    doc = Nokogiri::HTML open(grape.url)
+    table = doc.css("table.infobox")
+    rows = table.css("tr")
+    rows.each do |row|
+      if row.css("th").text.downcase.include? "color"
+        grape.color = row.css("td").text
+      end
+    end
+
+  end
+
+
+
+
 end
