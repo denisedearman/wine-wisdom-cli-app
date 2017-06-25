@@ -18,6 +18,7 @@ class WiserWine::CLI
 
   def list_grapes
     if @grape_varieties.length == 0
+      puts "Fetching your grape list your patience is appreciated...."
       @grape_varieties = WiserWine::GrapeVariety.all
     end
     @grape_varieties.each.with_index(1) do |grape , index|
@@ -36,7 +37,7 @@ class WiserWine::CLI
       if input.to_i != 0 && input.to_i <= @grape_varieties.length
         grape = @grape_varieties[input.to_i-1]
         grape.print_details
-        puts "Would you like information about a different wine? Enter 'yes' or 'no'"
+        puts "Would you like information about a different wine? Hit enter to continue or type 'no' to quit."
         again = gets.strip.downcase
         if again == "no"
           input = "exit"
